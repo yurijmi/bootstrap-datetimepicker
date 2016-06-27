@@ -2554,7 +2554,11 @@
             picker.disable();
         }
         if (input.is('input') && input.val().trim().length !== 0) {
-            setValue(parseInputDate(input.val().trim()));
+            if (options.multiDate) {
+                setValue(parseInputDate(input.val().trim().split(options.multiDateDelimiter)));
+            } else {
+                setValue(parseInputDate(input.val().trim()));
+            }
         }
         else if (options.defaultDate && input.attr('placeholder') === undefined) {
             setValue(options.defaultDate);
